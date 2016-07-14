@@ -1,18 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router';
 
 const Main = React.createClass({
     render() {
         return (
-            <div>
-                <h1>
-                    <Link to="/">Reduxtagram</Link>
-                </h1>
-                {React.cloneElement(this.props.children, this.props)}
+            <div class="container main">
+                <div class="page-header">
+                    <h1>FinTrack <small>Track all your finances</small></h1>
+                </div>
+
             </div>
         )
     }
 });
 
+// {React.cloneElement(this.props.children, this.props)}
 
 export default Main;
