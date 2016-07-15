@@ -3,7 +3,12 @@
 // 2. copy of current state
 
 export function categories(state = [], action) {
-    
+
+
+    if (action.type == "FETCH_CATEGORIES_FULFILLED") {
+        return [...action.payload.data];
+    }
+
     return state;
 }
 

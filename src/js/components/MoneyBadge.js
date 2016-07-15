@@ -42,12 +42,12 @@ const MoneyBadge = React.createClass({
         return (
             <div class="money-badge">
                 <button class={`btn ${this.getClassName()} ${this.buttonClassName()}`} type="button" onClick={this.switchToEditMode}>
-                    {this.props.title} <span class="badge">{this.props.amount}</span>
+                    {this.props.title} <span class="badge">{this.props.amount} / {this.props.expected}</span>
                 </button>
 
                 <div class={`money-badge__edit ${this.editClassName()}`}>
                     <div class="input-group">
-                        <input type="number" placeholder={this.props.amount} class="form-control" />
+                        <input type="number" placeholder={`${this.props.amount} / ${this.props.expected}`} class="form-control" />
                         <span class="input-group-btn">
                             <button class="btn btn-primary" type="button" onClick={this.switchToEditMode}>Ok</button>
                         </span>

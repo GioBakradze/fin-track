@@ -1,3 +1,13 @@
+import axios from "axios";
+
+// fetch categories for current month
+export function fetchCategories() {
+    return {
+        type: 'FETCH_CATEGORIES',
+        payload: axios.get('/data/categories.json')
+    }
+}
+
 // increment
 export function increment(index) {
     return {
