@@ -8,6 +8,8 @@ import css from './../styles/styles.styl';
 import App from './components/App';
 import Reports from './components/Reports';
 import Categories from './components/Categories';
+import Login from './components/Login';
+import User from './components/User';
 
 // import router deps
 import { Router, Route, IndexRoute } from 'react-router';
@@ -17,10 +19,18 @@ import store, { history } from './store';
 const router = (
     <Provider store={store}>
         <Router history={history}>
+
             <Route path="/" component={App}>
-                <IndexRoute component={Categories}></IndexRoute>
-                <Route path="/reports" component={Reports}></Route>
+
+                <IndexRoute component={Login}></IndexRoute>
+
+                <Route path="/user" component={User}>
+                    <IndexRoute component={Categories}></IndexRoute>
+                    <Route path="/reports" component={Reports}></Route>
+                </Route>
+
             </Route>
+
         </Router>
     </Provider>
 )
