@@ -10,6 +10,9 @@ const User = React.createClass({
     render() {
         return (
             <div>
+                <div class="page-header">
+                    <h1>FinTrack <small class="hidden-xs hidden-sm">Track all your finances</small></h1>
+                </div>
                 <ul class="nav nav-tabs">
                     <li class={this.isActive("/user/")} ><Link to="/">კატეგორიები</Link></li>
                     <li class={this.isActive("/user/reports")} ><Link to="/reports">რეპორტები</Link></li>

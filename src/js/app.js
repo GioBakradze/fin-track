@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+import firebaseSetup from './firebaseSetup';
 
 // Import css
 import css from './../styles/styles.styl';
@@ -15,6 +16,8 @@ import User from './components/User';
 import { Router, Route, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
 import store, { history } from './store';
+
+firebaseSetup();
 
 const router = (
     <Provider store={store}>

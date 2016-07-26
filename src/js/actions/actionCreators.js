@@ -1,4 +1,5 @@
 import axios from "axios";
+import firebase from "firebase";
 
 // fetch categories for current month
 export function fetchCategories() {
@@ -8,30 +9,9 @@ export function fetchCategories() {
     }
 }
 
-// increment
-export function increment(index) {
+export function authenticateUser(email, password) {
     return {
-        type: 'INCREMENT_LIKES',
-        index
-    }
-}
-
-// add comment
-export function addComment(postId, author, comment) {
-    return {
-        type: 'ADD_COMMENT',
-        postId,
-        author,
-        comment
-    }
-}
-
-
-// remove comment
-export function removeComment(postId, i) {
-    return {
-        type: 'REMOVE_COMMENT',
-        i,
-        postId
+        type: 'AUTHENTICATE',
+        payload: firebase.auth().signInWithEmailAndPassword(email, password)
     }
 }
