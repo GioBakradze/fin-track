@@ -12,7 +12,8 @@ const Login = React.createClass({
     },
 
     showErrorMessage() {
-        return this.props.user.failed ? '' : 'hidden-all'
+        // return this.props.user.failed ? '' : 'hidden-all'
+        return 'hidden-all';
     },
 
     render() {

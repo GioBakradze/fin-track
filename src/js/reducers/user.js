@@ -1,15 +1,16 @@
+import firebase from 'firebase';
 
-const defaultUserState = {
-    failed: false
-};
+export function user(state = {}, action) {
 
-export function user(state = defaultUserState, action) {
-
+    if (action.type == "AUTHENTICATE_FULFILLED") {
+        return {
+            failed: false,
+            email: action.payload.email
+        };
+    }
 
     if (action.type == "AUTHENTICATE_REJECTED") {
-        return {
-            failed: true
-        }
+        return {};
     }
 
     return state;

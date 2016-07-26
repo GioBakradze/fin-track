@@ -16,6 +16,14 @@ import User from './components/User';
 import { Router, Route, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
 import store, { history } from './store';
+import { UserAuthWrapper } from 'redux-auth-wrapper';
+import { routerActions } from 'react-router-redux';
+
+const UserIsAuthenticated = UserAuthWrapper({
+    authSelector: state => state.user, // how to get the user state
+    redirectAction: routerActions.replace, // the redux action to dispatch for redirect
+    wrapperDisplayName: 'UserIsAuthenticated' // a nice name for this auth check
+});
 
 firebaseSetup();
 
@@ -27,7 +35,7 @@ const router = (
 
                 <IndexRoute component={Login}></IndexRoute>
 
-                <Route path="/user" component={User}>
+                <Route path="/user" component={UserIsAuthenticated(User)}>
                     <IndexRoute component={Categories}></IndexRoute>
                     <Route path="/reports" component={Reports}></Route>
                 </Route>
