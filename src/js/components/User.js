@@ -24,6 +24,7 @@ const User = React.createClass({
                 <br />
                 <div class="panel panel-default">
                     <div class="panel-body">
+                        {this.props.children}
                     </div>
                 </div>
             </div>
