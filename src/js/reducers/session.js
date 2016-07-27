@@ -1,18 +1,18 @@
-import firebase from 'firebase';
-
-export function user(state = {}, action) {
+export function session(state = {}, action) {
 
     if (action.type == "AUTHENTICATE_FULFILLED") {
         return {
-            email: action.payload.email
+            failed: false
         };
     }
 
     if (action.type == "AUTHENTICATE_REJECTED") {
-        return {};
+        return {
+            failed: true
+        };
     }
 
     return state;
 }
 
-export default user;
+export default session;

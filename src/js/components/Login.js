@@ -1,4 +1,6 @@
-import React from 'react';
+import React from 'react'
+import { Link } from 'react-router';
+import { browserHistory } from 'react-router'
 
 const Login = React.createClass({
 
@@ -12,8 +14,22 @@ const Login = React.createClass({
     },
 
     showErrorMessage() {
-        // return this.props.user.failed ? '' : 'hidden-all'
-        return 'hidden-all';
+        return this.props.session.failed ? '' : 'hidden-all'
+    },
+
+    componentWillMount() {
+        // console.log('mount');
+        //
+        // if (this.props.user.hasOwnProperty('email')) {
+        //     browserHistory.push('/user');
+        // }
+    },
+
+    componentWillReceiveProps(newProps) {
+        // console.log('prooops', newProps.user);
+        // if (newProps.user.hasOwnProperty('email')) {
+        //     browserHistory.push('/user');
+        // }
     },
 
     render() {
@@ -24,6 +40,7 @@ const Login = React.createClass({
                     <div class="panel panel-default">
                         <div class="panel-heading">Login</div>
                         <div class="panel-body">
+                            <Link to="/user">users</Link>
 
                             <form ref="loginForm" onSubmit={this.handleSubmit}>
                                 <div class="form-group">

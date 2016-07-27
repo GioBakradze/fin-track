@@ -11,7 +11,10 @@ import rootReducer from './reducers/index';
 // create an object for the default data
 const defaultState = {
     categories: [],
-    user: {}
+    user: {},
+    session: {
+        failed: false
+    }
 };
 
 // const enhancers = compose(
