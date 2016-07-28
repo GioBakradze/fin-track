@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React from 'react'
+import { Link } from 'react-router'
+import connectToState from './../utils/connectToState'
 
 const User = React.createClass({
 
@@ -24,7 +25,7 @@ const User = React.createClass({
                 <br />
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        {this.props.children}
+                        {React.cloneElement(this.props.children, this.props)}
                     </div>
                 </div>
             </div>
@@ -33,4 +34,4 @@ const User = React.createClass({
 });
 
 // {React.cloneElement(this.props.children, this.props)}
-export default User;
+export default connectToState(User);

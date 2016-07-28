@@ -6,7 +6,7 @@ import firebaseSetup from './firebaseSetup';
 import css from './../styles/styles.styl';
 
 // import components
-import App from './components/App';
+import Main from './components/Main';
 import Reports from './components/Reports';
 import Categories from './components/Categories';
 import Login from './components/Login';
@@ -32,11 +32,11 @@ const router = (
     <Provider store={store}>
         <Router history={history}>
 
-            <Route path="/" component={App}>
+            <Route path="/" component={Main}>
 
                 <IndexRoute component={Login}></IndexRoute>
 
-                <Route path="user" component={User}>
+                <Route path="user" component={UserIsAuthenticated(User)}>
                     <IndexRoute component={Categories}></IndexRoute>
                     <Route path="reports" component={Reports}></Route>
                 </Route>
