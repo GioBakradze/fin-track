@@ -28,6 +28,10 @@ const UserIsAuthenticated = UserAuthWrapper({
 
 firebaseSetup();
 
+
+import firebase from 'firebase'
+console.log(firebase.auth().currentUser);
+
 const router = (
     <Provider store={store}>
         <Router history={history}>
