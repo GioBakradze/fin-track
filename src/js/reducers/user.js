@@ -4,7 +4,8 @@ export function user(state = {}, action) {
 
     if (action.type == "AUTHENTICATE_FULFILLED") {
         return {
-            email: action.payload.email
+            email: action.payload.email,
+            uid: action.payload.uid
         };
     }
 

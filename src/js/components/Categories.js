@@ -4,8 +4,7 @@ import MoneyBadge from './MoneyBadge';
 const Categories = React.createClass({
 
     componentWillMount() {
-        console.log('fetch cats');
-        this.props.fetchCategories();
+        this.props.fetchCategories(this.props.user.uid);
     },
 
     render() {

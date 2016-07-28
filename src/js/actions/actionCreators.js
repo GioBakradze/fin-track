@@ -2,10 +2,10 @@ import firebase from "firebase";
 
 
 // fetch categories for current month
-export function fetchCategories() {
+export function fetchCategories(uid) {
     return {
         type: 'FETCH_CATEGORIES',
-        payload: firebase.database().ref('/categories').once('value')
+        payload: firebase.database().ref(`/users/${uid}/categories`).once('value')
     }
 }
 
