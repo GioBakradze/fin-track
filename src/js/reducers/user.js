@@ -19,6 +19,11 @@ export function user(state = {}, action) {
         return {};
     }
 
+    if (action.type == "LOG_OUT_FULFILLED") {
+        localStorage.removeItem('fin-track-user');
+        return {};
+    }
+
     return state;
 }
 

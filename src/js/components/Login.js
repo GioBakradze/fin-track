@@ -18,6 +18,7 @@ const Login = React.createClass({
         return this.props.session.failed ? '' : 'hidden-all'
     },
 
+    // TODO: maybe should find a better place to redirect
     componentWillMount() {
         if (this.props.user.hasOwnProperty('email')) {
             browserHistory.push('/user');
