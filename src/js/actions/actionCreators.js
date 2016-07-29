@@ -8,6 +8,8 @@ export function fetchCategories(uid) {
     }
 }
 
+
+
 export function authenticateUser(email, password) {
     return {
         type: 'AUTHENTICATE',
