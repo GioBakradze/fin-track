@@ -17,12 +17,16 @@ const User = React.createClass({
     componentWillMount() {
         if (!this.props.user.hasOwnProperty('email')) {
             browserHistory.push('/');
+        } else {
+            this.props.setupDataStructure(this.props.user.uid);
         }
     },
 
     componentWillReceiveProps(newProps) {
         if (!newProps.user.hasOwnProperty('email')) {
             browserHistory.push('/');
+        } else {
+            this.props.setupDataStructure(this.props.user.uid);
         }
     },
 
