@@ -11,6 +11,7 @@ import Reports from './components/Reports';
 import Categories from './components/Categories';
 import Login from './components/Login';
 import User from './components/User';
+import Loader from './components/Loader';
 
 // import router deps
 import { Router, Route, IndexRoute } from 'react-router';
@@ -29,22 +30,28 @@ const UserIsAuthenticated = UserAuthWrapper({
 firebaseSetup();
 
 const router = (
-    <Provider store={store}>
-        <Router history={history}>
+    <div>
 
-            <Route path="/" component={Main}>
+        <Provider store={store}>
+            <Router history={history}>
 
-                <IndexRoute component={Login}></IndexRoute>
+                <Route path="/" component={Main}>
 
-                <Route path="user" component={UserIsAuthenticated(User)}>
-                    <IndexRoute component={Categories}></IndexRoute>
-                    <Route path="reports" component={Reports}></Route>
+                    <IndexRoute component={Login}></IndexRoute>
+
+                    <Route path="user" component={UserIsAuthenticated(User)}>
+                        <IndexRoute component={Categories}></IndexRoute>
+                        <Route path="reports" component={Reports}></Route>
+                    </Route>
+
                 </Route>
 
-            </Route>
+            </Router>
 
-        </Router>
-    </Provider>
+        </Provider>
+
+        <Loader loading={store.getState().loading} />
+    </div>
 )
 
 render(router, document.getElementById('root'));

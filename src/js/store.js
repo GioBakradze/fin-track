@@ -14,22 +14,13 @@ const defaultState = {
     user: JSON.parse(localStorage.getItem('fin-track-user')) || {},
     session: {
         failed: false
-    }
+    },
+    loading: false
 };
-
-// const enhancers = compose(
-//     window.devToolsExtension ? window.devToolsExtension() : f => f
-// );
 
 const middleware = applyMiddleware(promise(), thunk, logger());
 export const store = createStore(rootReducer, defaultState, middleware);
 export const history = syncHistoryWithStore(browserHistory, store);
 
-// if (module.hot) {
-//     module.hot.accept('./reducers/', () => {
-//         const nextRootReducer = require('./reducers/index').default();
-//         store.replaceReducer(nextRootReducer);
-//     });
-// }
 
 export default store;

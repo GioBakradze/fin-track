@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-import _ from 'lodash'
+import defaultDataStructure from './../utils/defaultDataStructure'
 
 export function setupDataStructure(uid) {
     return function (dispatch) {
@@ -9,48 +9,39 @@ export function setupDataStructure(uid) {
         });
 
         firebase.database().ref(`/users/`).once('value').then(function (data) {
+            console.log(data);
             if (!data.val().hasOwnProperty(uid)) {
-                console.log('need data structure');
 
-                firebase.database().ref(`/users/${uid}`).set({
-                    categories: [{
-                        title: 'კატეგორია'
-                    }],
-                    logs: [{
-                        catId: 0,
-                        timestamp: _.now(),
-                        amount: 0
-                    }],
-                    budget: [{
-                        month: new Date(_.now()).getMonth(),
-                        catId: 0,
-                        amount: 0
-                    }]
-                }).then(function () {
-                    console.log('structure created');
+                firebase.database().ref(`/users/${uid}`).set(defaultDataStructure()).then(function () {
+                    dispatch({
+                        type: 'SETUP_DATA_STRUCTURE_FULFILLED',
+                        payload: {}
+                    });
                 });
 
             } else {
-                console.log('data structure already created');
 
+                console.log(data.val()[uid]);
                 dispatch({
                     type: 'SETUP_DATA_STRUCTURE_FULFILLED',
-                    payload: {}
+                    payload: data.val()[uid]
                 });
+
             }
+        }, function () {
+            console.log('error occured');
+
         });
     }
 }
 
 
-export function fetchCategories(uid) {
-    return {
-        type: 'FETCH_CATEGORIES',
-        payload: firebase.database().ref(`/users/${uid}/categories`).once('value')
-    }
-}
-
-
+// export function fetchCategories(uid) {
+//     return {
+//         type: 'FETCH_CATEGORIES',
+//         payload: firebase.database().ref(`/users/${uid}/categories`).once('value')
+//     }
+// }
 
 export function authenticateUser(email, password) {
     return {
