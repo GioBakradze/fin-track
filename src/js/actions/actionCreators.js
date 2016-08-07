@@ -9,7 +9,6 @@ export function setupDataStructure(uid) {
         });
 
         firebase.database().ref(`/users/`).once('value').then(function (data) {
-            console.log(data);
             if (!data.val().hasOwnProperty(uid)) {
 
                 firebase.database().ref(`/users/${uid}`).set(defaultDataStructure()).then(function () {
@@ -20,17 +19,11 @@ export function setupDataStructure(uid) {
                 });
 
             } else {
-
-                console.log(data.val()[uid]);
                 dispatch({
                     type: 'SETUP_DATA_STRUCTURE_FULFILLED',
                     payload: data.val()[uid]
                 });
-
             }
-        }, function () {
-            console.log('error occured');
-
         });
     }
 }

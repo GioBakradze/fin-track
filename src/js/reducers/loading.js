@@ -1,6 +1,12 @@
-export default function loading(state = false, action) {
+export default function loading(state = 0, action) {
 
-    console.log('loading reducer');
+    if (action.type.endsWith('_PENDING')) {
+        return state + 1;
+    }
+
+    if (action.type.endsWith('_FULFILLED')) {
+        return state - 1;
+    }
 
     return state;
 }

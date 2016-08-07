@@ -15,7 +15,7 @@ const defaultState = {
     session: {
         failed: false
     },
-    loading: false
+    loading: 0
 };
 
 const middleware = applyMiddleware(promise(), thunk, logger());
