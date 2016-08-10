@@ -1,3 +1,4 @@
 node_modules
 npm-debug.log
 src/js/firebaseSetup.js
+src/app.min.js

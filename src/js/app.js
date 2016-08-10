@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import { Provider } from "react-redux"
-import { Router, Route, IndexRoute } from 'react-router'
+import { Router, Route, IndexRedirect } from 'react-router'
 
 import {history, store} from "./store"
 
@@ -16,9 +16,12 @@ ReactDOM.render((
         <Router history={history}>
 
             <Route path="/" component={Layout}>
-                <IndexRoute component={AnonymousLayout}>
-                    <IndexRoute component={LoginLayout}></IndexRoute>
-                </IndexRoute>
+                <IndexRedirect to="/u/login"></IndexRedirect>
+
+                <Route path="u" component={AnonymousLayout}>
+                    <Route path="login" component={LoginLayout}></Route>
+                </Route>
+
             </Route>
 
         </Router>
