@@ -9,6 +9,12 @@ import Layout from "./components/Layout"
 import AnonymousLayout from "./components/AnonymousLayout"
 import LoginLayout from "./components/anonymous/LoginLayout"
 
+// Import css
+import css from './../styles/styles.styl'
+import firebaseSetup from './firebaseSetup'
+
+firebaseSetup();
+
 const app = document.getElementById('app')
 
 ReactDOM.render((

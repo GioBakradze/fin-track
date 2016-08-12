@@ -1,5 +1,11 @@
-import React from "react"
+import React from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
+// actions
+import { authenticateUser } from './../../actions/userActions'
+
+@connect((store) => ({ session: store.session }), (dispatch) => bindActionCreators({ authenticateUser }, dispatch))
 export default class LoginLayout extends React.Component {
 
     constructor() {
@@ -9,8 +15,11 @@ export default class LoginLayout extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log(this.refs.email.value);
-        console.log(this.refs.password.value);
+        this.props.authenticateUser(this.refs.email.value, this.refs.password.value);
+    }
+
+    showErrorMessage() {
+        return this.props.session.failed ? '' : 'hidden-all'
     }
 
     render () {
@@ -33,7 +42,7 @@ export default class LoginLayout extends React.Component {
 
                             <br />
 
-                            <div class={`alert alert-danger`}>
+                            <div class={`alert alert-danger ${this.showErrorMessage()}`}>
                                 Username or password incorrect
                             </div>
                         </div>
