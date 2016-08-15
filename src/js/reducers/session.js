@@ -25,5 +25,16 @@ export default function (state={
         };
     }
 
+    if (action.type == "LOG_OUT_FULFILLED") {
+        localStorage.removeItem('fin-track-user');
+
+        return {
+            loggedIn: false,
+            failed: false,
+            user: {}
+        };
+    }
+
+
     return state;
 }

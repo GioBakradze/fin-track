@@ -6,3 +6,17 @@ export function authenticateUser(email, password) {
         payload: firebase.auth().signInWithEmailAndPassword(email, password)
     }
 }
+
+export function logoutUser() {
+    return {
+        type: 'LOG_OUT',
+        payload: firebase.auth().signOut()
+    }
+}
+
+export function fetchCategories(uid) {
+    return {
+        type: 'FETCH_CATEGORIES',
+        payload: firebase.database().ref(`/users/${uid}/categories`).once('value')
+    }
+}
