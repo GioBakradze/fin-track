@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+import _ from 'lodash'
 
 export function authenticateUser(email, password) {
     return {
@@ -15,9 +16,33 @@ export function logoutUser() {
 }
 
 export function fetchCategories(uid) {
-    return {
-        type: 'FETCH_CATEGORIES',
-        payload: firebase.database().ref(`/users/${uid}/categories`).once('value')
+
+    return function (dispatch) {
+
+        dispatch({
+            type: 'FETCH_CATEGORIES_PENDING',
+            payload: {}
+        });
+
+        Promise.all([
+            firebase.database().ref(`/users/${uid}/categories`).once('value'),
+            firebase.database().ref(`/users/${uid}/logs`).once('value'),
+            firebase.database().ref(`/users/${uid}/budget`).once('value')
+        ]).then(function (data) {
+
+            var res = {
+                categories: _.isNull(data[0].val()) ? {} : data[0].val(),
+                logs: _.isNull(data[1].val()) ? {} : data[1].val(),
+                budget: _.isNull(data[2].val()) ? {} : data[2].val()
+            };
+
+            dispatch({
+                type: 'FETCH_CATEGORIES_FULFILLED',
+                payload: res
+            });
+
+        });
+
     }
 }
 

@@ -29,3 +29,5 @@ export default class CategoriesLayout extends React.Component {
         )
     }
 }
+
+// {this.props.categories.map( (e, i) => <MoneyBadge key={i} amount={e.amount} expected={e.expected} title={e.title} /> )}
