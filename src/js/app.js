@@ -16,8 +16,11 @@ import ReportsLayout from './components/user/ReportsLayout'
 // Import css
 import css from './../styles/styles.styl'
 import firebaseSetup from './firebaseSetup'
+import lodashExtend from './lodashExtend'
 
 firebaseSetup();
+lodashExtend();
+
 
 const app = document.getElementById('app')
 

@@ -1,11 +1,12 @@
 import React from "react"
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchCategories, addNewCategory } from './../../actions/userActions'
+import { fetchAllData, addNewCategory } from './../../actions/userActions'
 
 import AddCategory from './dumb/AddCategory'
+import MoneyBadge from './dumb/MoneyBadge'
 
-@connect((store) => ({ categories: store.categories, session: store.session }), (dispatch) => bindActionCreators({ fetchCategories, addNewCategory }, dispatch))
+@connect((store) => ({ categories: store.categories, session: store.session }), (dispatch) => bindActionCreators({ fetchAllData, addNewCategory }, dispatch))
 export default class CategoriesLayout extends React.Component {
 
     constructor() {
@@ -14,7 +15,7 @@ export default class CategoriesLayout extends React.Component {
     }
 
     componentWillMount() {
-        this.props.fetchCategories(this.props.session.user.uid);
+        this.props.fetchAllData(this.props.session.user.uid);
     }
 
     add(name) {
@@ -24,6 +25,7 @@ export default class CategoriesLayout extends React.Component {
     render () {
         return (
             <div>
+                {this.props.categories.map( (e, i) => <MoneyBadge key={i} amount={e.amount} expected={e.expected} title={e.title} /> )}
                 <AddCategory addCategory={this.add} />
             </div>
         )

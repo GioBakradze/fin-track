@@ -2,19 +2,29 @@ import _ from 'lodash'
 
 export default function (state=[], action) {
 
-    if (action.type == 'FETCH_CATEGORIES_FULFILLED') {
+    if (action.type == 'FETCH_ALL_DATA_FULFILLED') {
 
+        var res = _.map(action.payload.categories, (e, key) => {
+            var amount = _.chain(action.payload.logs)
+                .filter((v) => v.catId == key)
+                .filter((v) => _.yearAndMonthMatches(_.now()) == _.yearAndMonthMatches(v.timestamp))
+                .reduce((sum, v) => sum + v.amount , 0)
+                .value();
 
+            var expected = _.chain(action.payload.budget)
+                .filter((v) => v.catId == key)
+                .filter((v) => _.yearAndMonthMatches(_.now()) == _.yearAndMonthMatches(v.timestamp))
+                .reduce((sum, v) => sum + v.amount , 0)
+                .value();
 
-        return _.map(action.payload.categories, function (e, key) {
-            // console.log(e, key);
-
-            _.forEach(action.payload.)
-
-            return {};
+            return {
+                title: e.title,
+                amount,
+                expected
+            };
         });
 
-        // return _.isNull(action.payload.val()) ? [] : action.payload.val();
+        return res;
     }
 
 

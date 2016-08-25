@@ -16,6 +16,7 @@ export default class HeaderMenu extends React.Component {
         return (
             <ul class="nav nav-tabs">
                 <li class={this.isActive("/user/categories")} ><Link to="/user/categories">Categories</Link></li>
+                <li><Link to="/user/reports">Budget</Link></li>
                 <li class={this.isActive("/user/reports")} ><Link to="/user/reports">Reports</Link></li>
             </ul>
         )

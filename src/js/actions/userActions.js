@@ -15,12 +15,12 @@ export function logoutUser() {
     }
 }
 
-export function fetchCategories(uid) {
+export function fetchAllData(uid) {
 
     return function (dispatch) {
 
         dispatch({
-            type: 'FETCH_CATEGORIES_PENDING',
+            type: 'FETCH_ALL_DATA_PENDING',
             payload: {}
         });
 
@@ -37,7 +37,7 @@ export function fetchCategories(uid) {
             };
 
             dispatch({
-                type: 'FETCH_CATEGORIES_FULFILLED',
+                type: 'FETCH_ALL_DATA_FULFILLED',
                 payload: res
             });
 
@@ -61,12 +61,8 @@ export function addNewCategory(uid, name) {
                 type: 'ADD_CATEGORY_FULFILLED',
                 payload: {}
             });
-        });
 
-        // console.log(uid, name);
-        //
-        // firebase.database().ref(`/users/${uid}/categories`).push({
-        //     title: name
-        // });
+            dispatch(fetchAllData(uid));
+        });
     }
 }
