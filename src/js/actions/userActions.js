@@ -15,6 +15,32 @@ export function logoutUser() {
     }
 }
 
+export function fetchBudget(uid) {
+    return function (dispatch) {
+        dispatch({
+            type: 'FETCH_BUDGET_PENDING',
+            payload: {}
+        });
+
+        Promise.all([
+            firebase.database().ref(`/users/${uid}/categories`).once('value'),
+            firebase.database().ref(`/users/${uid}/budget`).once('value')
+        ]).then(function (data) {
+
+            var res = {
+                categories: _.isNull(data[0].val()) ? {} : data[0].val(),
+                budget: _.isNull(data[1].val()) ? {} : data[1].val()
+            };
+
+            dispatch({
+                type: 'FETCH_BUDGET_FULFILLED',
+                payload: res
+            });
+
+        });
+    }
+}
+
 export function fetchAllData(uid) {
 
     return function (dispatch) {

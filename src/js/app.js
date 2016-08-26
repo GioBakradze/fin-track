@@ -12,6 +12,8 @@ import UserLayout from './components/UserLayout'
 import LoginLayout from './components/anonymous/LoginLayout'
 import CategoriesLayout from './components/user/CategoriesLayout'
 import ReportsLayout from './components/user/ReportsLayout'
+import BudgetLayout from './components/user/BudgetLayout'
+
 
 // Import css
 import css from './../styles/styles.styl'
@@ -41,6 +43,7 @@ ReactDOM.render((
 
                         <Route path="categories" component={CategoriesLayout}></Route>
                         <Route path="reports" component={ReportsLayout}></Route>
+                        <Route path="budget" component={BudgetLayout}></Route>
 
                     </Route>
 

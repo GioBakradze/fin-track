@@ -14,6 +14,13 @@ export default function lodashExtend() {
         },
         yearAndMonthMatches: function (timestamp1, timestamp2) {
             return _.getYearAndMonthFromTimestamp(timestamp1) == _.getYearAndMonthFromTimestamp(timestamp2);
+        },
+        getMonthsTitles: function () {
+            return ['იანვარი', 'თებერვალი',
+                    'მარტი', 'აპრილი', 'მაისი',
+                    'ივნისი', 'ივლისი', 'აგვისტო',
+                    'სექტემბერი', 'ოქტომბერი', 'ნოემბერი',
+                    'დეკემბერი'];
         }
     });
 
