@@ -3,7 +3,7 @@ import _ from 'lodash'
 export default function (state=[], action) {
 
     if (action.type == 'FETCH_ALL_DATA_FULFILLED') {
-
+        
         var res = _.map(action.payload.categories, (e, key) => {
             var amount = _.chain(action.payload.logs)
                 .filter((v) => v.catId == key)

@@ -7,10 +7,10 @@ export default function lodashExtend() {
             return new Date(timestamp).getMonth()
         },
         getYearFromTimestamp: function (timestamp) {
-            return new Date(timestamp).getYear()
+            return new Date(timestamp).getFullYear()
         },
         getYearAndMonthFromTimestamp: function (timestamp) {
-            return (new Date(timestamp).getYear()) + '-' + (new Date(timestamp).getMonth());
+            return (new Date(timestamp).getFullYear()) + '-' + (new Date(timestamp).getMonth());
         },
         yearAndMonthMatches: function (timestamp1, timestamp2) {
             return _.getYearAndMonthFromTimestamp(timestamp1) == _.getYearAndMonthFromTimestamp(timestamp2);
@@ -21,6 +21,11 @@ export default function lodashExtend() {
                     'ივნისი', 'ივლისი', 'აგვისტო',
                     'სექტემბერი', 'ოქტომბერი', 'ნოემბერი',
                     'დეკემბერი'];
+        },
+        getCurrentYearMonths: function () {
+            return _.getMonthsTitles()
+                .map((e, i) => new Date(_.getYearFromTimestamp(_.now()), i))
+                .map(e => e.getTime());
         }
     });
 

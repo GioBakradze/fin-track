@@ -41,6 +41,15 @@ export function fetchBudget(uid) {
     }
 }
 
+export function updateBudget(uid, key, amount) {
+    return function (dispatch) {
+        dispatch({
+            type: 'UPDATE_BUDGET_PENDING',
+            payload: {}
+        });
+    }
+}
+
 export function fetchAllData(uid) {
 
     return function (dispatch) {
