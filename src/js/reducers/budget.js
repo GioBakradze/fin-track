@@ -8,13 +8,14 @@ export default function (state = [], action) {
             return {
                 ...e,
                 amounts: _.getCurrentYearMonths().map( (month) => {
-
+                    
                     return _.chain(action.payload.budget)
-                        .filter((v) => v.catId == key && _.yearAndMonthMatches(month, v.timestamp))
-                        .reduce((sum, v) => sum + v.amount , 0)
+                        .filter((v) => v.catId == key && _.yearAndMonthMatches(month, v.month))
+                        .reduce((sum, v) => sum + Number(v.amount) , 0)
                         .value();
 
-                })
+                }),
+                catId: key
             };
         });
 

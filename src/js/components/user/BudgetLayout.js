@@ -11,17 +11,27 @@ export default class BudgetLayout extends React.Component {
     constructor() {
         super();
         this.output = this.output.bind(this);
+        this.budgetUpdate = this.budgetUpdate.bind(this);
     }
 
     componentWillMount() {
         this.props.fetchBudget(this.props.session.user.uid);
     }
 
+    budgetUpdate(indexAsMonth, catId) {
+        const month = new Date(_.getYearFromTimestamp(_.now()), indexAsMonth).getTime();
+        const that = this;
+
+        return function (amount) {
+            that.props.updateBudget(that.props.session.user.uid, month, amount, catId);
+        }
+    }
+
     output() {
         return this.props.budget.map( (e, i) => (
             <tr key={i}>
                 <td>{e.title}</td>
-                {e.amounts.map((v, i2) => <td key={i2}> <NumberBadge value={v}  /> </td>)}
+                {e.amounts.map((v, i2) => <td key={i2}> <NumberBadge value={v} update={this.budgetUpdate(i2, e.catId)} /> </td>)}
             </tr>
         ));
     }

@@ -15,13 +15,14 @@ export default class NumberBadge extends React.Component {
 
     valueChanged(event) {
         this.setState({
-            value: Number(event.target.value) < 0 ? 0 : event.target.value 
+            value: Number(event.target.value) < 0 ? 0 : event.target.value
         });
         this.updateValue();
     }
 
     updateValue() {
-        console.log(this.state.value);
+        // console.log(this.state.value);
+        this.props.update(this.state.value);
     }
 
     render() {

@@ -41,11 +41,24 @@ export function fetchBudget(uid) {
     }
 }
 
-export function updateBudget(uid, key, amount) {
+export function updateBudget(uid, month, amount, catId) {
     return function (dispatch) {
         dispatch({
             type: 'UPDATE_BUDGET_PENDING',
             payload: {}
+        });
+
+        firebase.database().ref(`/users/${uid}/budget/${month}-${catId}`).set({
+            catId,
+            amount,
+            month
+        }).then(function () {
+            dispatch({
+                type: 'UPDATE_BUDGET_FULFILLED',
+                payload: {}
+            });
+
+            // dispatch(fetchAllData(uid));
         });
     }
 }
